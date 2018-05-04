@@ -64,9 +64,7 @@
                                             <i class="la la-edit"></i>
                                         </a>
                                         @if(!$user->hasRole('administrator'))
-
-                                            <button class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill"
-                                                    data-url="{{ route('admin.users.destroy', [$user->id]) }}" data-toggle="tooltip" data-placement="top" data-title="{{ __('views.admin.users.index.delete') }}">
+                                            <button type="button" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill btn-user-delete" data-toggle="modal" data-whatever="{{ route('admin.users.delete', [$user->id]) }}" data-target="#deleteModal">
                                                 <i class="la la-trash"></i>
                                             </button>
                                         @endif
@@ -83,7 +81,51 @@
             </div>
         </div>
     </div>
+     <!--begin::Delete Modal-->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="">
+                        Delete User
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="la la-remove"></span>
+                    </button>
+                </div>
+                
+                <div class="modal-body">
+                    <form class="m-form m-form--fit m-form--label-align-right user" id="deleteProducts" name="deleteProducts">
+                        <div class="form-group m-form__group row">
+                            <h4>Are you sure you want to delete this user?</h4>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary m-btn" data-dismiss="modal">
+                        Close
+                    </button>
+                    <a href="" type="button" class="btn btn-brand m-btn" id="btn-delete">
+                        Delete
+                    </a>
+                    <input type="hidden" id="product_id" name="product_id" value="0">
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--end::Modal-->
     <script src="../../../asset/demo/default/custom/components/datatables/base/html-table.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready( function() {
+            $('.btn-user-delete').on('click', function (event) {
+                var button = $(this) 
+                var recipient = button.data('whatever') 
+                $('#btn-delete').attr('href', recipient)
+            })
+        })
+        
+    </script>
 @endsection
 
 

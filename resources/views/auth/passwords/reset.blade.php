@@ -10,6 +10,19 @@
                 Enter your email to reset your password:
             </div>
         </div>
+        @if (session('status'))
+            <div class="alert alert-success alert-dismissible fade show   m-alert m-alert--air" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                {{ session('status') }}
+            </div>
+        @endif
+
+        @if (!$errors->isEmpty())
+            <div class="alert alert-danger alert-dismissible fade show   m-alert m-alert--air" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                {!! $errors->first() !!}
+            </div>
+        @endif
         {{ Form::open(['route' => 'password.request', 'class' => 'm-login__form m-form']) }}
             <div class="form-group m-form__group">
                 <input class="form-control m-input" type="text" name="email" id="m_email" value="{{ old('email') }}" placeholder="{{ __('views.auth.passwords.reset.input_0') }}" required autofocus>

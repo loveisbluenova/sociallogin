@@ -11,13 +11,15 @@
             </div>
         </div>
         @if (session('status'))
-            <div class="alert alert-success">
+            <div class="alert alert-success alert-dismissible fade show   m-alert m-alert--air" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
                 {{ session('status') }}
             </div>
         @endif
 
         @if (!$errors->isEmpty())
-            <div class="alert alert-danger" role="alert">
+            <div class="alert alert-danger alert-dismissible fade show   m-alert m-alert--air" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
                 {!! $errors->first() !!}
             </div>
         @endif

@@ -120,7 +120,9 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
+    {   
+        $user = User::find($id);
+        $user->delete();        
+        return redirect()->intended(route('admin.users'));
     }
 }
